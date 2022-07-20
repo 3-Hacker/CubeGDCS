@@ -24,6 +24,7 @@ namespace Game.Level
                 PlayerPrefs.SetInt("RandomIndex", value); // ES3.Save<int>("RandomIndex", value);
             }
         }
+        
 
         public static void LoadCurrentScene()
         {
