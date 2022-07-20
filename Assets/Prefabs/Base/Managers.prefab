@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7536885700433030411}
   - component: {fileID: 7536885700433030410}
   - component: {fileID: 7536885700433030413}
-  - component: {fileID: 7536885700433030415}
   - component: {fileID: 5680642994809100610}
   m_Layer: 0
   m_Name: Managers
@@ -65,18 +64,6 @@ MonoBehaviour:
   TapButton: {fileID: 0}
   SuccessButton: {fileID: 0}
   FailButton: {fileID: 0}
---- !u!114 &7536885700433030415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7536885700433030408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfaf42af9248bf04e9995f80c577a01d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5680642994809100610
 MonoBehaviour:
   m_ObjectHideFlags: 0
