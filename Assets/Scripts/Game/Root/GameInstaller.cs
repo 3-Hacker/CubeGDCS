@@ -13,6 +13,7 @@ namespace Game.Root
         public IGameModel GameModel;
         public IObjectPoolModel PoolModel;
         public GameManager GameManager;
+        public UiManager UIManager;
         public LevelLoader LevelLoader;
 
 

@@ -1,4 +1,3 @@
-using System;
 using Game.Enums;
 using Game.Level;
 using Game.Manager.Ui.Base;

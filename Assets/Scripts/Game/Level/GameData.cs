@@ -6,7 +6,6 @@ namespace Game.Level
     public static class GameData
     {
         private static readonly int TotalLevelCount = 5;
-        public static int OutRipTrick { get; set; }
 
         public static int VisualLevelIndex => LevelIndex + 1;
 
@@ -25,8 +24,6 @@ namespace Game.Level
                 PlayerPrefs.SetInt("RandomIndex", value); // ES3.Save<int>("RandomIndex", value);
             }
         }
-
-        public static readonly float Sensivity = 750f;
 
         public static void LoadCurrentScene()
         {
