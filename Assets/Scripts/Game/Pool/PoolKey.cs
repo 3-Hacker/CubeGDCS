@@ -1,0 +1,1 @@
+namespace Game.Pool{    public enum PoolKey    {        None,        		//-test		test,//-		//*ADDITION*//    }}
