@@ -1,4 +1,5 @@
 ﻿using Game.Data.UnityObject;
+using Game.Enums;
 using Game.Pool;
 
 namespace Game.Model.GameModel
@@ -7,6 +8,8 @@ namespace Game.Model.GameModel
     {
         RD_GameStatus Status { get; }
         RD_PoolHelper PoolHelper { get; }
+        GameStatus GetStatus();
+
         void Clear();
     }
 }

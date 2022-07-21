@@ -1,4 +1,5 @@
 ﻿using Game.Data.UnityObject;
+using Game.Enums;
 using Game.Pool;
 using UnityEngine;
 
@@ -30,6 +31,11 @@ namespace Game.Model.GameModel
                     Load();
                 return _poolHelper;
             }
+        }
+
+        public GameStatus GetStatus()
+        {
+            return Status.Value;
         }
 
         public void Clear()

@@ -31,15 +31,15 @@ namespace Game.Manager
 
         private void Set()
         {
+            _poolModel = GameInstaller.Instance.PoolModel;
             _gameSignals = GameInstaller.Instance.GameSignal;
             _gameModel = GameInstaller.Instance.GameModel;
-            _poolModel = GameInstaller.Instance.PoolModel;
             _gameModel.Status.Block();
         }
 
         public void GameStart()
         {
-            _gameModel.Status.UnBlock();
+            _gameModel.Status.Game();
             _gameSignals.GameStart.Dispatch();
         }
     }

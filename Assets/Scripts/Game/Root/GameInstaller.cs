@@ -1,7 +1,9 @@
+using System;
 using Game.InputHandler;
 using Game.Level;
 using Game.Manager;
 using Game.Model.GameModel;
+using Game.Model.PlayerModel;
 using Game.Pool;
 using Game.Signals;
 using UnityEngine;
@@ -11,6 +13,7 @@ namespace Game.Root
     public class GameInstaller : MonoSingleton<GameInstaller>
     {
         public GameSignals GameSignal = new GameSignals();
+        public IPlayerModel PlayerModel;
         public IGameModel GameModel;
         public IObjectPoolModel PoolModel;
         public GameManager GameManager;
@@ -24,19 +27,24 @@ namespace Game.Root
             DependLoad();
         }
 
+        private void Start()
+        {
+            ReferenceControl();
+        }
+
         private void DependLoad()
         {
             GameModel = new GameModel();
+            PlayerModel = new PlayerModel();
             PoolModel = new ObjectPoolModel();
-            ReferenceControl();
         }
 
         private void ReferenceControl()
         {
-            if (GameManager == null) FindObjectOfType<GameManager>();
-            if (UIManager == null) GameManager.GetComponent<UiManager>();
-            if (LevelLoader == null) GameManager.GetComponent<LevelLoader>();
-            if (InputMouseHandler == null) GameManager.GetComponent<InputMouseHandler>();
+            if (GameManager == null) GameManager = FindObjectOfType<GameManager>();
+            if (UIManager == null) UIManager = GameManager.GetComponent<UiManager>();
+            if (LevelLoader == null) LevelLoader = GameManager.GetComponent<LevelLoader>();
+            if (InputMouseHandler == null) InputMouseHandler = GameManager.GetComponent<InputMouseHandler>();
         }
     }
 }

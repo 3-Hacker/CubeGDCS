@@ -6,7 +6,7 @@ namespace Core.Utils
 {
     public class RagdollBehaviour : MonoBehaviour
     {
-        private Animator _anim;
+        [SerializeField] private Animator _anim;
         private List<Collider> _ragdollColliders;
         private List<Rigidbody> _ragdollRigidbodies;
         private bool toggle;
@@ -14,7 +14,7 @@ namespace Core.Utils
 
         private void Awake()
         {
-            _anim = GetComponent<Animator>();
+            if (_anim == null) _anim = GetComponentInChildren<Animator>();
             _ragdollColliders = GetComponentsInChildren<Collider>().ToList();
             _ragdollRigidbodies = GetComponentsInChildren<Rigidbody>().ToList();
         }
@@ -29,17 +29,15 @@ namespace Core.Utils
             return ragdollOn;
         }
 
+        [Button(nameof(RagdollOff))] public bool RagdollOffButton;
+
+
         public void RagdollOff()
         {
             this.toggle = !this.toggle;
 
             ragdollOn = false;
 
-            foreach (var ragdollCollider in _ragdollColliders)
-            {
-                ragdollCollider.tag = "PlayerBodyPart";
-                ragdollCollider.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-            }
 
             foreach (var ragdollRigidbody in _ragdollRigidbodies)
             {
@@ -50,6 +48,9 @@ namespace Core.Utils
 
             _anim.enabled = true;
         }
+
+        [Button(nameof(RagdollOn))] public bool RagdollOnButton;
+
 
         public void RagdollOn()
         {
@@ -73,11 +74,13 @@ namespace Core.Utils
             _anim.enabled = false;
         }
 
+        [Button(nameof(Force))] public bool ForceButton;
+
         public void Force()
         {
             RagdollOn();
             _anim.GetBoneTransform(HumanBodyBones.Hips).GetComponent<Rigidbody>()
-                .AddForce(-Vector3.forward * 75f + Vector3.up * 50f, ForceMode.Impulse);
+                .AddForce(Vector3.forward * 75f + Vector3.up * 50f, ForceMode.Impulse);
         }
 
 

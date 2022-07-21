@@ -38,19 +38,17 @@ namespace Game.Manager
 
         #region Config Settings
 
-        private void Start()
+        private void Awake()
         {
-            Set();
+            SetReference();
         }
 
-        private void Set()
+        private void SetReference()
         {
             _gameModel = GameInstaller.Instance.GameModel;
             _gameManager = GameInstaller.Instance.GameManager;
             _gameSignals = GameInstaller.Instance.GameSignal;
             _levelLoader = GameInstaller.Instance.LevelLoader;
-
-            _gameSignals.InitPool.AddListener(OnInitPool);
         }
 
         private void OnEnable()
@@ -58,6 +56,7 @@ namespace Game.Manager
             TapButton.onClick.AddListener(OnTapClick);
             SuccessButton.onClick.AddListener(OnSuccessClick);
             FailButton.onClick.AddListener(OnFailClick);
+            _gameSignals.InitPool.AddListener(OnInitPool);
         }
 
         private void OnDisable()

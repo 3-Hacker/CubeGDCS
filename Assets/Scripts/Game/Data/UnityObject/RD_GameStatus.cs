@@ -9,6 +9,7 @@ namespace Game.Data.UnityObject
     {
         [EnumFlags] public GameStatus Value;
 
+
         public void Block()
         {
             Value = GameStatus.Blocked;
@@ -16,7 +17,12 @@ namespace Game.Data.UnityObject
 
         public void UnBlock()
         {
-            Value =GameStatus.Blocked;
+            Value = GameStatus.Blocked;
+        }
+
+        public void Game()
+        {
+            Value = GameStatus.Game;
         }
 
         public void Reset()
