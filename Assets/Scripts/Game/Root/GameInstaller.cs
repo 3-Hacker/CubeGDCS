@@ -1,3 +1,4 @@
+using Game.InputHandler;
 using Game.Level;
 using Game.Manager;
 using Game.Model.GameModel;
@@ -15,7 +16,7 @@ namespace Game.Root
         public GameManager GameManager;
         public UiManager UIManager;
         public LevelLoader LevelLoader;
-
+        public InputMouseHandler InputMouseHandler;
 
         private void Awake()
         {
@@ -27,6 +28,15 @@ namespace Game.Root
         {
             GameModel = new GameModel();
             PoolModel = new ObjectPoolModel();
+            ReferenceControl();
+        }
+
+        private void ReferenceControl()
+        {
+            if (GameManager == null) FindObjectOfType<GameManager>();
+            if (UIManager == null) GameManager.GetComponent<UiManager>();
+            if (LevelLoader == null) GameManager.GetComponent<LevelLoader>();
+            if (InputMouseHandler == null) GameManager.GetComponent<InputMouseHandler>();
         }
     }
 }

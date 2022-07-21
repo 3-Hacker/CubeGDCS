@@ -45,10 +45,10 @@ namespace Game.Manager
 
         private void Set()
         {
+            _gameModel = GameInstaller.Instance.GameModel;
             _gameManager = GameInstaller.Instance.GameManager;
             _gameSignals = GameInstaller.Instance.GameSignal;
             _levelLoader = GameInstaller.Instance.LevelLoader;
-            _gameModel = GameInstaller.Instance.GameModel;
 
             _gameSignals.InitPool.AddListener(OnInitPool);
         }
