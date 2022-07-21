@@ -56,12 +56,12 @@ namespace Game.Manager
             TapButton.onClick.AddListener(OnTapClick);
             SuccessButton.onClick.AddListener(OnSuccessClick);
             FailButton.onClick.AddListener(OnFailClick);
-            _gameSignals.InitPool.AddListener(OnInitPool);
+            _gameSignals.initPool.AddListener(OnInitPool);
         }
 
         private void OnDisable()
         {
-            _gameSignals.InitPool.RemoveListener(OnInitPool);
+            _gameSignals.initPool.RemoveListener(OnInitPool);
             TapButton.onClick.RemoveListener(OnTapClick);
             SuccessButton.onClick.RemoveListener(OnSuccessClick);
             FailButton.onClick.RemoveListener(OnFailClick);

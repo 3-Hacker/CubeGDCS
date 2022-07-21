@@ -1,8 +1,8 @@
-using System;
 using Game.InputHandler;
 using Game.Level;
 using Game.Manager;
 using Game.Model.GameModel;
+using Game.Model.LevelModel;
 using Game.Model.PlayerModel;
 using Game.Pool;
 using Game.Signals;
@@ -14,6 +14,7 @@ namespace Game.Root
     {
         public GameSignals GameSignal = new GameSignals();
         public IPlayerModel PlayerModel;
+        public ILevelModel LevelModel;
         public IGameModel GameModel;
         public IObjectPoolModel PoolModel;
         public GameManager GameManager;
@@ -37,6 +38,7 @@ namespace Game.Root
             GameModel = new GameModel();
             PlayerModel = new PlayerModel();
             PoolModel = new ObjectPoolModel();
+            LevelModel = new LevelModel();
         }
 
         private void ReferenceControl()

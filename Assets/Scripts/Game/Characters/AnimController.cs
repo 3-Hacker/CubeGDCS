@@ -32,12 +32,12 @@ namespace Game.Characters
 
         private void OnEnable()
         {
-            _gameSignals.GameStart.AddListener(OnGameStart);
+            _gameSignals.gameStart.AddListener(OnGameStart);
         }
 
         private void OnDisable()
         {
-            _gameSignals.GameStart.RemoveListener(OnGameStart);
+            _gameSignals.gameStart.RemoveListener(OnGameStart);
         }
 
         private void OnGameStart()

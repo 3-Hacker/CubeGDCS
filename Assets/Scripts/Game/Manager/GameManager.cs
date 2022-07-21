@@ -26,7 +26,7 @@ namespace Game.Manager
                 _poolModel.Pool(item.Key.ToString(), item.Prefab, item.Count);
             }
 
-            _gameSignals.InitPool.Dispatch(true);
+            _gameSignals.initPool.Dispatch(true);
         }
 
         private void Set()
@@ -40,7 +40,7 @@ namespace Game.Manager
         public void GameStart()
         {
             _gameModel.Status.Game();
-            _gameSignals.GameStart.Dispatch();
+            _gameSignals.gameStart.Dispatch();
         }
     }
 }
