@@ -36,9 +36,9 @@ namespace Game.Root
         private void DependLoad()
         {
             GameModel = new GameModel();
-            PlayerModel = new PlayerModel();
             PoolModel = new ObjectPoolModel();
             LevelModel = new LevelModel();
+            PlayerModel = new PlayerModel();
         }
 
         private void ReferenceControl()

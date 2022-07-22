@@ -1,6 +1,5 @@
 ﻿using Game.Collectables;
 using Game.Obstacles;
-using UnityEngine;
 
 namespace Game.Signals
 {
@@ -15,5 +14,9 @@ namespace Game.Signals
         //Contact
         public readonly Signal<Obstacle> characterObstacleContact = new Signal<Obstacle>();
         public readonly Signal<Collectable> characterCollectableContact = new Signal<Collectable>();
+
+        //Player
+        public readonly Signal PlayerDead = new Signal();
+        public readonly Signal PlayerLifeChange = new Signal();
     }
 }

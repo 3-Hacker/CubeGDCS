@@ -7,5 +7,7 @@
         public float GetTurnSpeed();
         public bool GetSharpMode();
         public float GetMaxXPos();
+        public int GetLife();
+        public void DecreaseLive();
     }
 }

@@ -7,14 +7,15 @@ namespace Core.Utils
     public class RagdollBehaviour : MonoBehaviour
     {
         [SerializeField] private Animator _anim;
+        private Collider _mainCollider;
         private List<Collider> _ragdollColliders;
         private List<Rigidbody> _ragdollRigidbodies;
-        private bool toggle;
         private bool ragdollOn;
 
         private void Awake()
         {
             if (_anim == null) _anim = GetComponentInChildren<Animator>();
+            _mainCollider = GetComponent<Collider>();
             _ragdollColliders = GetComponentsInChildren<Collider>().ToList();
             _ragdollRigidbodies = GetComponentsInChildren<Rigidbody>().ToList();
         }
@@ -34,8 +35,6 @@ namespace Core.Utils
 
         public void RagdollOff()
         {
-            this.toggle = !this.toggle;
-
             ragdollOn = false;
 
 
@@ -54,8 +53,6 @@ namespace Core.Utils
 
         public void RagdollOn()
         {
-            this.toggle = !this.toggle;
-
             ragdollOn = true;
 
 
@@ -72,6 +69,7 @@ namespace Core.Utils
             }
 
             _anim.enabled = false;
+            _mainCollider.isTrigger = false;
         }
 
         [Button(nameof(Force))] public bool ForceButton;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Game.Extensions
+namespace Core.Utils
 {
     public static class TimeExtension
     {

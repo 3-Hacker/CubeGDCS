@@ -6,6 +6,7 @@ namespace Game.Data.UnityObject
     public class RD_PlayerData : ScriptableObject
     {
         public float PlayerSpeed;
+        public int PlayerLife;
         public float PlayerTurnSpeed;
         public float PlayerMaxXPos;
         public float PlayerInputSensitivity;

@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Core.Utils
+namespace Editor.Extensions
 {
 	public static class PivotUtilities
 	{

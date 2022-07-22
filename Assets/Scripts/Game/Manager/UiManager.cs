@@ -57,6 +57,7 @@ namespace Game.Manager
             SuccessButton.onClick.AddListener(OnSuccessClick);
             FailButton.onClick.AddListener(OnFailClick);
             _gameSignals.initPool.AddListener(OnInitPool);
+            _gameSignals.PlayerDead.AddListener(OnPlayerDead);
         }
 
         private void OnDisable()
@@ -65,6 +66,12 @@ namespace Game.Manager
             TapButton.onClick.RemoveListener(OnTapClick);
             SuccessButton.onClick.RemoveListener(OnSuccessClick);
             FailButton.onClick.RemoveListener(OnFailClick);
+            _gameSignals.PlayerDead.RemoveListener(OnPlayerDead);
+        }
+
+        private void OnPlayerDead()
+        {
+            Invoke(nameof(OpenFailScreen), 1f);
         }
 
         private void OnTapClick()
@@ -108,18 +115,16 @@ namespace Game.Manager
 
         public void OpenSuccessScreen()
         {
-            if (_gameModel.Status.Value == GameStatus.Blocked) return;
             TapScreen.CloseScreen();
+            InGameScreen.CloseScreen();
             SuccessScreen.OpenScreen();
-            _gameModel.Status.Block();
         }
 
         public void OpenFailScreen()
         {
-            if (_gameModel.Status.Value == GameStatus.Blocked) return;
             TapScreen.CloseScreen();
+            InGameScreen.CloseScreen();
             FailScreen.OpenScreen();
-            _gameModel.Status.Block();
         }
 
         #endregion

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   PlayerSpeed: 5
+  PlayerLife: 3
   PlayerTurnSpeed: 30
   PlayerMaxXPos: 2
   PlayerInputSensitivity: 1.5

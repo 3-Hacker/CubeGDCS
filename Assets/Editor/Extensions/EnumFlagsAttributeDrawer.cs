@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Core.Utils
+namespace Editor.Extensions
 {
     [CustomPropertyDrawer(typeof(EnumFlagsAttribute))]
     public class EnumFlagsAttributeDrawer : PropertyDrawer
@@ -16,6 +16,7 @@ namespace Core.Utils
     {
         public EnumFlagsAttribute()
         {
+            
         }
     }
 }

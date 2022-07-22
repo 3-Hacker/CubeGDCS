@@ -1,4 +1,4 @@
-﻿using Core.Utils;
+﻿using System;
 using Game.Enums;
 using UnityEngine;
 
@@ -29,5 +29,10 @@ namespace Game.Data.UnityObject
         {
             Value = GameStatus.None;
         }
+    }
+
+    public class EnumFlagsAttribute : Attribute
+    {
+        
     }
 }
