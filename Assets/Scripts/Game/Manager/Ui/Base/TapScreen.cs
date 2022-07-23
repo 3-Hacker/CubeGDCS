@@ -1,11 +1,17 @@
+using System;
 using Game.Manager.Ui.Concrete;
+using Game.Root;
+using Game.Signals;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game.Manager.Ui.Base
 {
     public class TapScreen : MonoBehaviour, IScreen
     {
+        private GameSignals _gameSignals;
         [SerializeField] private bool animatedScreen;
+        [SerializeField] private Button _shopButton;
 
         #region Animation Settings
 
@@ -17,15 +23,32 @@ namespace Game.Manager.Ui.Base
 
         #endregion
 
+
+        private void Awake()
+        {
+            _gameSignals = GameInstaller.Instance.GameSignal;
+        }
+
+        private void OnEnable()
+        {
+            _shopButton.onClick.AddListener(OnShopButton);
+        }
+        
+        private void OnDisable()
+        {
+            _shopButton.onClick.RemoveListener(OnShopButton);
+        }
+
+
         private void Start()
         {
             Setup();
             AnimatedOpenScreen();
         }
 
-        private void OnDisable()
+        private void OnShopButton()
         {
-            //  rectTransform.DOKill();
+            _gameSignals.ShopButton.Dispatch();
         }
 
         private void Setup()

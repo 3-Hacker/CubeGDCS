@@ -10,6 +10,12 @@ namespace Game.Model.LevelModel
         public LevelModel()
         {
             _levelData = Resources.Load<RD_LevelData>("Data/LevelData");
+            ResetData();
+        }
+
+        private void ResetData()
+        {
+            _levelData.LevelCoin = 0;
         }
 
         public int GetLevelCoin()
@@ -17,9 +23,29 @@ namespace Game.Model.LevelModel
             return _levelData.LevelCoin;
         }
 
-        public void SetLevelCoin(int amount)
+        public int GetTotalCoin()
         {
-            _levelData.LevelCoin += amount;
+            return _levelData.TotalCoin;
+        }
+
+        public int GetCollectableValue()
+        {
+            return _levelData.CollectableMultiplyCoin;
+        }
+
+        public void SetTotalCoin()
+        {
+            _levelData.TotalCoin += _levelData.LevelCoin;
+        }
+
+        public void SetLevelCoin(int multiplier)
+        {
+            _levelData.LevelCoin += _levelData.CollectableMultiplyCoin * multiplier;
+        }
+
+        public void SetCollectableValue()
+        {
+            _levelData.CollectableMultiplyCoin += 10;
         }
     }
 }

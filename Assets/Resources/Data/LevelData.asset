@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d91e9da925d64a82933667110cc8c1f3, type: 3}
   m_Name: LevelData
   m_EditorClassIdentifier: 
-  LevelCoin: 0
+  TotalCoin: 0
+  LevelCoin: 60
+  CollectableMultiplyCoin: 10

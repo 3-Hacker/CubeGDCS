@@ -82,12 +82,24 @@ namespace Game.Characters
             else
             {
                 Transform tempTransform;
-                (tempTransform = transform).Rotate(Vector3.up * inputValue.x * _playerModel.GetTurnSpeed());
+                (tempTransform = transform).Rotate(Vector3.up * inputValue.x * _playerModel.GetTurnSpeed(),
+                    Space.World);
                 var position = tempTransform.position;
                 position = new Vector3(Mathf.Clamp(position.x, -_playerModel.GetMaxXPos(), _playerModel.GetMaxXPos()),
                     position.y, position.z);
                 transform.position = position;
+
+                var rotation = transform.eulerAngles;
+                rotation.y = CustomClampAngle(rotation.y, -30f, 30f);
+                transform.eulerAngles = rotation;
             }
+        }
+
+        private float CustomClampAngle(float angle, float from, float to)
+        {
+            if (angle < 0f) angle = 360 + angle;
+            if (angle > 180f) return Mathf.Max(angle, 360 + from);
+            return Mathf.Min(angle, to);
         }
     }
 }

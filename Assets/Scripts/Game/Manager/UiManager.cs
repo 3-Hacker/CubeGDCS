@@ -58,6 +58,8 @@ namespace Game.Manager
             FailButton.onClick.AddListener(OnFailClick);
             _gameSignals.initPool.AddListener(OnInitPool);
             _gameSignals.PlayerDead.AddListener(OnPlayerDead);
+            _gameSignals.OpenUpgradePanel.AddListener(OnOpenUpgradePanel);
+            _gameSignals.CloseUpgradePanel.AddListener(OnCloseUpgradePanel);
         }
 
         private void OnDisable()
@@ -67,6 +69,18 @@ namespace Game.Manager
             SuccessButton.onClick.RemoveListener(OnSuccessClick);
             FailButton.onClick.RemoveListener(OnFailClick);
             _gameSignals.PlayerDead.RemoveListener(OnPlayerDead);
+            _gameSignals.OpenUpgradePanel.RemoveListener(OnOpenUpgradePanel);
+            _gameSignals.CloseUpgradePanel.RemoveListener(OnCloseUpgradePanel);
+        }
+
+        private void OnCloseUpgradePanel()
+        {
+            if (!TapButton.gameObject.activeSelf) TapButton.gameObject.SetActive(true);
+        }
+
+        private void OnOpenUpgradePanel()
+        {
+            if (TapButton.gameObject.activeSelf) TapButton.gameObject.SetActive(false);
         }
 
         private void OnPlayerDead()

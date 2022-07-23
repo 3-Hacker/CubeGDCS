@@ -18,5 +18,15 @@ namespace Game.Signals
         //Player
         public readonly Signal PlayerDead = new Signal();
         public readonly Signal PlayerLifeChange = new Signal();
+        public readonly Signal LevelCoinChange = new Signal();
+        
+        //Upgrade
+        public readonly Signal OpenUpgradePanel = new Signal();
+        public readonly Signal CloseUpgradePanel = new Signal();
+        
+        //Shop
+        public readonly Signal ShopButton = new Signal();
+
+
     }
 }
