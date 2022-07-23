@@ -26,6 +26,10 @@ namespace Game.Manager.Ui.Base
         [SerializeField] private Button _lifeSellButton;
         [SerializeField] private Button _collectableValueSellButton;
 
+        [SerializeField] private TextMeshProUGUI _lifeSellText;
+        [SerializeField] private TextMeshProUGUI _collectableSellText;
+
+
         [SerializeField] private float _upgradeOpenDurationTime = 3f;
         private bool _isOpen;
         private Coroutine _openCoroutine;
@@ -44,6 +48,8 @@ namespace Game.Manager.Ui.Base
             _playerModel = GameInstaller.Instance.PlayerModel;
 
             SetLevelData();
+            SetCollectableText();
+            SetLifeText();
         }
 
         private void OnEnable()
@@ -64,23 +70,32 @@ namespace Game.Manager.Ui.Base
         {
             if (!_isOpen)
             {
-                if(_closeCoroutine!=null) StopCoroutine(_closeCoroutine);
+                if (_closeCoroutine != null) StopCoroutine(_closeCoroutine);
                 _openCoroutine = StartCoroutine(OpenPanel());
             }
             else
             {
-                if(_openCoroutine!=null) StopCoroutine(_openCoroutine);
+                if (_openCoroutine != null) StopCoroutine(_openCoroutine);
                 _closeCoroutine = StartCoroutine(ClosePanel());
             }
         }
 
         private void OnCollectableValueSellButton()
         {
+            if (_levelModel.IsSellCollectable())
+            {
+                SetCollectableText();
+            }
         }
 
         private void OnLifeSellButton()
         {
+            if (_playerModel.IsSellLife())
+            {
+                SetLifeText();
+            }
         }
+
 
         public void OpenScreen()
         {
@@ -155,11 +170,31 @@ namespace Game.Manager.Ui.Base
             if (gameObject.activeSelf) gameObject.SetActive(false);
         }
 
-        public void SetLevelData()
+        private void SetLevelData()
         {
             _playerTotalCoinText.text = "TOTAL COIN :" + _levelModel.GetTotalCoin();
             _playerLifeText.text = "LIFE :" + _playerModel.GetLife();
+            SetTotalCoin();
+        }
+
+        private void SetCollectableText()
+        {
+            _collectableSellText.text = "" + _levelModel.GetCollectableCostValue();
             _playerCollectableValueText.text = "COLLECTABLE VALUE :" + _levelModel.GetCollectableValue();
+            SetTotalCoin();
+        }
+
+
+        private void SetLifeText()
+        {
+            _lifeSellText.text = "" + _playerModel.GetLifeCostValue();
+            _playerLifeText.text = "LIFE :" + _playerModel.GetLife();
+            SetTotalCoin();
+        }
+
+        private void SetTotalCoin()
+        {
+            _playerTotalCoinText.text = "TOTAL COIN :" + _levelModel.GetTotalCoin();
         }
     }
 }

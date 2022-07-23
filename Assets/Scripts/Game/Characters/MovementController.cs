@@ -3,6 +3,7 @@ using Game.InputHandler;
 using Game.Model.GameModel;
 using Game.Model.PlayerModel;
 using Game.Root;
+using Game.Signals;
 using UnityEngine;
 
 namespace Game.Characters
@@ -11,6 +12,7 @@ namespace Game.Characters
     {
         private IGameModel _gameModel;
         private IPlayerModel _playerModel;
+        private GameSignals _gameSignals;
 
         private void OnEnable()
         {
@@ -22,6 +24,8 @@ namespace Game.Characters
         {
             InputMouseHandler.OnDrag -= OnMove;
             InputMouseHandler.OnEnd -= OnEnd;
+
+            _gameSignals.LevelFinish.RemoveListener(OnLevelFinish);
         }
 
 
@@ -33,8 +37,17 @@ namespace Game.Characters
 
         private void SetReference()
         {
+            _gameSignals = GameInstaller.Instance.GameSignal;
             _gameModel = GameInstaller.Instance.GameModel;
             _playerModel = GameInstaller.Instance.PlayerModel;
+
+            _gameSignals.LevelFinish.AddListener(OnLevelFinish);
+        }
+
+        private void OnLevelFinish()
+        {
+            _gameModel.Status.Block();
+            _gameSignals.SetGameState.Dispatch(_gameModel.Status.Value);
         }
 
         private void OnMove(Vector2 inputValue)

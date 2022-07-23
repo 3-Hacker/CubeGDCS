@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Upgrade;
+using UnityEngine;
 
 namespace Game.Data.UnityObject
 {
@@ -7,6 +8,7 @@ namespace Game.Data.UnityObject
     {
         public float PlayerSpeed;
         public int PlayerLife;
+        public Cost PlayerCost;
         public float PlayerTurnSpeed;
         public float PlayerMaxXPos;
         public float PlayerInputSensitivity;

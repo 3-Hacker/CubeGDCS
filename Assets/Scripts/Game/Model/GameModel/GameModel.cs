@@ -11,8 +11,7 @@ namespace Game.Model.GameModel
 
         public GameModel()
         {
-            Status = Resources.Load<RD_GameStatus>("Data/GameStatus");
-            _poolHelper = Resources.Load<RD_PoolHelper>("Data/PoolHelper");
+            Load();
         }
 
         private void Load()
@@ -21,7 +20,7 @@ namespace Game.Model.GameModel
             _poolHelper = Resources.Load<RD_PoolHelper>("Data/PoolHelper");
         }
 
-        public RD_GameStatus Status { get; private set; }
+        public RD_GameStatus Status { get; set; }
 
         public RD_PoolHelper PoolHelper
         {

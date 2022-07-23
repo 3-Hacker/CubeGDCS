@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   PlayerSpeed: 5
-  PlayerLife: 0
+  PlayerLife: 5
+  PlayerCost:
+    CostValue: 160
+    MaxCostValue: 100
   PlayerTurnSpeed: 150
   PlayerMaxXPos: 2
   PlayerInputSensitivity: 5

@@ -1,3 +1,5 @@
+using System;
+using Game.Enums;
 using Game.Model.GameModel;
 using Game.Pool;
 using Game.Root;
@@ -18,6 +20,17 @@ namespace Game.Manager
             InitPool();
         }
 
+        private void OnDisable()
+        {
+            _gameSignals.SetGameState.RemoveListener(OnSetGameState);
+        }
+
+        private void OnSetGameState(GameStatus gameStatus)
+        {
+            Debug.Log($"Set GameStatus {gameStatus}");
+        }
+
+
         private void InitPool()
         {
             for (int i = 0; i < _gameModel.PoolHelper.List.Count; i++)
@@ -26,7 +39,7 @@ namespace Game.Manager
                 _poolModel.Pool(item.Key.ToString(), item.Prefab, item.Count);
             }
 
-            _gameSignals.initPool.Dispatch(true);
+            _gameSignals.InitPool.Dispatch(true);
         }
 
         private void Set()
@@ -35,12 +48,14 @@ namespace Game.Manager
             _gameSignals = GameInstaller.Instance.GameSignal;
             _gameModel = GameInstaller.Instance.GameModel;
             _gameModel.Status.Block();
+            _gameSignals.SetGameState.AddListener(OnSetGameState);
         }
 
         public void GameStart()
         {
             _gameModel.Status.Game();
-            _gameSignals.gameStart.Dispatch();
+            _gameSignals.SetGameState.Dispatch(_gameModel.Status.Value);
+            _gameSignals.GameStart.Dispatch();
         }
     }
 }

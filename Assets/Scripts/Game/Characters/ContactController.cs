@@ -34,21 +34,21 @@ namespace Game.Characters
 
         private void OnEnable()
         {
-            _gameSignals.characterCollectableContact.AddListener(OnCharacterCollectableContact);
-            _gameSignals.characterObstacleContact.AddListener(OnCharacterObstacleContact);
+            _gameSignals.CharacterCollectableContact.AddListener(OnCharacterCollectableContact);
+            _gameSignals.CharacterObstacleContact.AddListener(OnCharacterObstacleContact);
         }
 
         private void OnDisable()
         {
-            _gameSignals.characterCollectableContact.RemoveListener(OnCharacterCollectableContact);
-            _gameSignals.characterObstacleContact.RemoveListener(OnCharacterObstacleContact);
+            _gameSignals.CharacterCollectableContact.RemoveListener(OnCharacterCollectableContact);
+            _gameSignals.CharacterObstacleContact.RemoveListener(OnCharacterObstacleContact);
         }
 
 
         private void OnCharacterObstacleContact(Obstacle hitObstacle)
         {
             Debug.Log("OnCharacterObstacleContact");
-            _playerModel.DecreaseLive();
+            _playerModel.DecreaseLife();
             //Debug.Log($"PlayerModel {_playerModel.GetLife()}");
         }
 

@@ -2,6 +2,7 @@
 using Core.Utils;
 using Game.Collectables;
 using Game.Enums;
+using Game.GameEnd;
 using Game.Model.GameModel;
 using Game.Obstacles;
 using Game.Root;
@@ -47,6 +48,7 @@ namespace Game.Characters
         {
             _ragdollBehaviour.RagdollOn();
             _gameModel.Status.Block();
+            _gameSignals.SetGameState.Dispatch(_gameModel.Status.Value);
         }
 
 
@@ -55,11 +57,14 @@ namespace Game.Characters
             if (_gameModel.Status.Value == GameStatus.Blocked) return;
             if (other.transform.TryGetComponent(out Obstacle obstacle))
             {
-                _gameSignals.characterObstacleContact.Dispatch(obstacle);
+                _gameSignals.CharacterObstacleContact.Dispatch(obstacle);
             }
             else if (other.transform.TryGetComponent(out Collectable collectables))
             {
-                _gameSignals.characterCollectableContact.Dispatch(collectables);
+                _gameSignals.CharacterCollectableContact.Dispatch(collectables);
+            }else if (other.transform.TryGetComponent(out Finish finish))
+            {
+                _gameSignals.LevelFinish.Dispatch();
             }
         }
     }

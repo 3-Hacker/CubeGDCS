@@ -56,22 +56,25 @@ namespace Game.Manager
             TapButton.onClick.AddListener(OnTapClick);
             SuccessButton.onClick.AddListener(OnSuccessClick);
             FailButton.onClick.AddListener(OnFailClick);
-            _gameSignals.initPool.AddListener(OnInitPool);
+            _gameSignals.InitPool.AddListener(OnInitPool);
             _gameSignals.PlayerDead.AddListener(OnPlayerDead);
+            _gameSignals.PlayerVictory.AddListener(OnPlayerVictory);
             _gameSignals.OpenUpgradePanel.AddListener(OnOpenUpgradePanel);
             _gameSignals.CloseUpgradePanel.AddListener(OnCloseUpgradePanel);
         }
 
         private void OnDisable()
         {
-            _gameSignals.initPool.RemoveListener(OnInitPool);
+            _gameSignals.InitPool.RemoveListener(OnInitPool);
             TapButton.onClick.RemoveListener(OnTapClick);
             SuccessButton.onClick.RemoveListener(OnSuccessClick);
             FailButton.onClick.RemoveListener(OnFailClick);
             _gameSignals.PlayerDead.RemoveListener(OnPlayerDead);
+            _gameSignals.PlayerVictory.RemoveListener(OnPlayerVictory);
             _gameSignals.OpenUpgradePanel.RemoveListener(OnOpenUpgradePanel);
             _gameSignals.CloseUpgradePanel.RemoveListener(OnCloseUpgradePanel);
         }
+
 
         private void OnCloseUpgradePanel()
         {
@@ -83,10 +86,17 @@ namespace Game.Manager
             if (TapButton.gameObject.activeSelf) TapButton.gameObject.SetActive(false);
         }
 
+
         private void OnPlayerDead()
         {
             Invoke(nameof(OpenFailScreen), 1f);
         }
+
+        private void OnPlayerVictory()
+        {
+            Invoke(nameof(OpenSuccessScreen), 1f);
+        }
+
 
         private void OnTapClick()
         {

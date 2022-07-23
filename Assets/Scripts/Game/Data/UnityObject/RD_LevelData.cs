@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Upgrade;
+using UnityEngine;
 
 namespace Game.Data.UnityObject
 {
@@ -8,5 +9,6 @@ namespace Game.Data.UnityObject
         public int TotalCoin;
         public int LevelCoin;
         public int CollectableMultiplyCoin;
+        public Cost CollectableCost;
     }
 }

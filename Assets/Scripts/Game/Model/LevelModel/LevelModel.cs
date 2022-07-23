@@ -28,6 +28,15 @@ namespace Game.Model.LevelModel
             return _levelData.TotalCoin;
         }
 
+        public void DecreaseTotalCoin()
+        {
+            if (_levelData.TotalCoin > 0)
+            {
+                _levelData.TotalCoin--;
+            }
+        }
+
+
         public int GetCollectableValue()
         {
             return _levelData.CollectableMultiplyCoin;
@@ -43,9 +52,41 @@ namespace Game.Model.LevelModel
             _levelData.LevelCoin += _levelData.CollectableMultiplyCoin * multiplier;
         }
 
+        public bool IsSellCollectable()
+        {
+            if (_levelData.CollectableCost.CostValue < _levelData.CollectableCost.MaxCostValue)
+            {
+                if (_levelData.TotalCoin > 0 && _levelData.TotalCoin >= _levelData.CollectableCost.CostValue)
+                {
+                    _levelData.TotalCoin -= _levelData.CollectableCost.CostValue;
+                    _levelData.CollectableCost.CostValue *= 2;
+                    SetCollectableValue();
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+
         public void SetCollectableValue()
         {
-            _levelData.CollectableMultiplyCoin += 10;
+            _levelData.CollectableMultiplyCoin++;
+        }
+
+        public int GetCollectableCostValue()
+        {
+            return _levelData.CollectableCost.CostValue;
+        }
+
+        public void DecreaseLevelCoin()
+        {
+            _levelData.LevelCoin--;
+        }
+
+        public void IncreaseTotalCoin()
+        {
+            _levelData.TotalCoin++;
         }
     }
 }

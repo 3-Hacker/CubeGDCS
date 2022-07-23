@@ -8,6 +8,10 @@
         public bool GetSharpMode();
         public float GetMaxXPos();
         public int GetLife();
-        public void DecreaseLive();
+        public void DecreaseLife();
+        public void SetLife();
+        public bool IsSellLife();
+        public  int GetLifeCostValue();
+       public void IncreaseLife();
     }
 }

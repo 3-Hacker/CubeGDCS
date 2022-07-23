@@ -8,11 +8,13 @@ namespace Game.Model.PlayerModel
     public class PlayerModel : IPlayerModel
     {
         private RD_PlayerData _playerData;
+        private RD_LevelData _levelData;
         private GameSignals _gameSignals;
-        
+
         public PlayerModel()
         {
             _playerData = Resources.Load<RD_PlayerData>("Data/PlayerData");
+            _levelData = Resources.Load<RD_LevelData>("Data/LevelData");
             _gameSignals = GameInstaller.Instance.GameSignal;
         }
 
@@ -48,7 +50,7 @@ namespace Game.Model.PlayerModel
             return _playerData.PlayerLife;
         }
 
-        public void DecreaseLive()
+        public void DecreaseLife()
         {
             if (_playerData.PlayerLife > 0)
             {
@@ -60,6 +62,38 @@ namespace Game.Model.PlayerModel
             {
                 _gameSignals.PlayerDead.Dispatch();
             }
+        }
+
+        public void SetLife()
+        {
+            _playerData.PlayerLife++;
+        }
+
+
+        public bool IsSellLife()
+        {
+            if (_playerData.PlayerCost.CostValue < _playerData.PlayerCost.MaxCostValue)
+            {
+                if (_levelData.TotalCoin > 0 && _levelData.TotalCoin >= _playerData.PlayerCost.CostValue)
+                {
+                    _levelData.TotalCoin -= _playerData.PlayerCost.CostValue;
+                    _playerData.PlayerCost.CostValue *= 2;
+                    SetLife();
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public int GetLifeCostValue()
+        {
+            return _playerData.PlayerCost.CostValue;
+        }
+
+        public void IncreaseLife()
+        {
+            _playerData.PlayerLife++;
         }
     }
 }
