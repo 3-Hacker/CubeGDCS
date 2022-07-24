@@ -27,6 +27,7 @@ namespace Game.Manager.Ui.Base
         public void OpenScreen()
         {
             if (!gameObject.activeSelf) gameObject.SetActive(true);
+            Invoke(nameof(SetLevelCoin), 1f);
         }
 
         public void AnimatedOpenScreen()
@@ -58,7 +59,6 @@ namespace Game.Manager.Ui.Base
                 SetLevelCoinText();
             }
 
-            Debug.Log("aaa");
             Invoke(nameof(OpenNextButton), 1f);
 
             // ReSharper disable once IteratorNeverReturns

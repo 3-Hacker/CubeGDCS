@@ -5,7 +5,7 @@ namespace Game.Level
 {
     public static class GameData
     {
-        private static readonly int TotalLevelCount = 5;
+        private static readonly int TotalLevelCount = 2;
 
         public static int VisualLevelIndex => LevelIndex + 1;
 

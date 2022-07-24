@@ -48,9 +48,10 @@ namespace Game.Manager.Ui.Base
             _playerModel = GameInstaller.Instance.PlayerModel;
 
             SetLevelData();
-            SetCollectableText();
-            SetLifeText();
+            CollectableEnoughState();
+            LifeEnoughState();
         }
+
 
         private void OnEnable()
         {
@@ -82,18 +83,12 @@ namespace Game.Manager.Ui.Base
 
         private void OnCollectableValueSellButton()
         {
-            if (_levelModel.IsSellCollectable())
-            {
-                SetCollectableText();
-            }
+            SetSellCollectableState();
         }
 
         private void OnLifeSellButton()
         {
-            if (_playerModel.IsSellLife())
-            {
-                SetLifeText();
-            }
+            SetSellLifeState();
         }
 
 
@@ -184,6 +179,20 @@ namespace Game.Manager.Ui.Base
             SetTotalCoin();
         }
 
+        private void NotEnoughCollectableText()
+        {
+            _collectableSellText.text = "Not Enough";
+            _playerCollectableValueText.text = "COLLECTABLE VALUE :" + _levelModel.GetCollectableValue();
+            SetTotalCoin();
+        }
+
+        private void MaxCollectableText()
+        {
+            _collectableSellText.text = "MAX";
+            _playerCollectableValueText.text = "COLLECTABLE VALUE : MAX";
+            SetTotalCoin();
+        }
+
 
         private void SetLifeText()
         {
@@ -192,9 +201,104 @@ namespace Game.Manager.Ui.Base
             SetTotalCoin();
         }
 
+        private void NotEnoughLifeText()
+        {
+            _lifeSellText.text = "Not Enough";
+            _playerLifeText.text = "LIFE :" + _playerModel.GetLife();
+            SetTotalCoin();
+        }
+
+        private void MaxLifeText()
+        {
+            _lifeSellText.text = "MAX";
+            _playerLifeText.text = "LIFE : MAX";
+            SetTotalCoin();
+        }
+
         private void SetTotalCoin()
         {
             _playerTotalCoinText.text = "TOTAL COIN :" + _levelModel.GetTotalCoin();
+        }
+
+
+        private void SetSellLifeState()
+        {
+            if (_playerModel.IsItEnough())
+            {
+                if (_playerModel.IsSellLife())
+                {
+                    _playerModel.SetLife();
+                    SetLifeText();
+                }
+                else
+                {
+                    MaxLifeText();
+                }
+            }
+            else
+            {
+                NotEnoughLifeText();
+            }
+        }
+
+
+        private void SetSellCollectableState()
+        {
+            if (_levelModel.IsItEnough())
+            {
+                if (_levelModel.IsSellCollectable())
+                {
+                    _levelModel.SetCollectableValue();
+                    SetCollectableText();
+                }
+                else
+                {
+                    MaxCollectableText();
+                }
+            }
+            else
+            {
+                NotEnoughCollectableText();
+            }
+        }
+
+
+        private void CollectableEnoughState()
+        {
+            if (_levelModel.IsItEnough())
+            {
+                if (_levelModel.IsSellCollectable())
+                {
+                    SetCollectableText();
+                }
+                else
+                {
+                    MaxCollectableText();
+                }
+            }
+            else
+            {
+                NotEnoughCollectableText();
+            }
+        }
+
+        private void LifeEnoughState()
+        {
+            if (_playerModel.IsItEnough())
+            {
+                if (_playerModel.IsSellLife())
+                {
+                    SetLifeText();
+                }
+                else
+                {
+                    MaxLifeText();
+                }
+            }
+            else
+            {
+                NotEnoughLifeText();
+            }
         }
     }
 }

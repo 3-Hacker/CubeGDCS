@@ -9,6 +9,7 @@
         public void SetTotalCoin();
         public void SetLevelCoin(int multiplier);
         public bool IsSellCollectable();
+        public bool IsItEnough();
         public void SetCollectableValue();
         public int GetCollectableCostValue();
         public void DecreaseLevelCoin();

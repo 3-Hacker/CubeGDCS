@@ -52,25 +52,22 @@ namespace Game.Model.LevelModel
             _levelData.LevelCoin += _levelData.CollectableMultiplyCoin * multiplier;
         }
 
+        public bool IsItEnough()
+        {
+            return _levelData.TotalCoin > 0 && _levelData.TotalCoin >= _levelData.CollectableCost.CostValue;
+        }
+
+
         public bool IsSellCollectable()
         {
-            if (_levelData.CollectableCost.CostValue < _levelData.CollectableCost.MaxCostValue)
-            {
-                if (_levelData.TotalCoin > 0 && _levelData.TotalCoin >= _levelData.CollectableCost.CostValue)
-                {
-                    _levelData.TotalCoin -= _levelData.CollectableCost.CostValue;
-                    _levelData.CollectableCost.CostValue *= 2;
-                    SetCollectableValue();
-                    return true;
-                }
-            }
-
-            return false;
+            return _levelData.CollectableCost.CostValue < _levelData.CollectableCost.MaxCostValue;
         }
 
 
         public void SetCollectableValue()
         {
+            _levelData.TotalCoin -= _levelData.CollectableCost.CostValue;
+            _levelData.CollectableCost.CostValue *= 2;
             _levelData.CollectableMultiplyCoin++;
         }
 

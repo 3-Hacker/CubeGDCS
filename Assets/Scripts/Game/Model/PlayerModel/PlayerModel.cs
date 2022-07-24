@@ -66,24 +66,21 @@ namespace Game.Model.PlayerModel
 
         public void SetLife()
         {
+            _levelData.TotalCoin -= _playerData.PlayerCost.CostValue;
+            _playerData.PlayerCost.CostValue *= 2;
             _playerData.PlayerLife++;
+        }
+
+
+        public bool IsItEnough()
+        {
+            return _levelData.TotalCoin > 0 && _levelData.TotalCoin >= _playerData.PlayerCost.CostValue;
         }
 
 
         public bool IsSellLife()
         {
-            if (_playerData.PlayerCost.CostValue < _playerData.PlayerCost.MaxCostValue)
-            {
-                if (_levelData.TotalCoin > 0 && _levelData.TotalCoin >= _playerData.PlayerCost.CostValue)
-                {
-                    _levelData.TotalCoin -= _playerData.PlayerCost.CostValue;
-                    _playerData.PlayerCost.CostValue *= 2;
-                    SetLife();
-                    return true;
-                }
-            }
-
-            return false;
+            return _playerData.PlayerCost.CostValue < _playerData.PlayerCost.MaxCostValue;
         }
 
         public int GetLifeCostValue()

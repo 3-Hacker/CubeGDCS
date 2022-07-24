@@ -11,6 +11,7 @@
         public void DecreaseLife();
         public void SetLife();
         public bool IsSellLife();
+        public bool IsItEnough();
         public  int GetLifeCostValue();
        public void IncreaseLife();
     }
